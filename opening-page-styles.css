@@ -1,0 +1,56 @@
+.opening-video {
+  position: fixed;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: -1;
+}
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0;
+  z-index: -9;
+}
+
+.content {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+}
+
+body {
+  font-family: comic sans ms, cursive;
+}
+
+img {
+  float: right;
+}
+
+nav ul {
+  list-style-type: none;
+  font-size: 30px;
+}
+
+nav li {
+  display: inline;
+}
+
+nav a:link,
+nav a:visited {
+  background-color: black;
+  color: white;
+}
+
+nav a:hover {
+  background-color: dodgerblue;
+}
