@@ -13,8 +13,17 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use("/", async (req, res) => {
-  const url = "http://api.football-data.org/v4/competitions/PL/standings";
+app.use("/standings/:league", async (req, res) => {
+  const league = req.params.league;
+  let url = "";
+
+  // Check the league parameter and set the appropriate API endpoint
+  if (league === "pl") {
+    url = "http://api.football-data.org/v4/competitions/PL/standings";
+  } else if (league === "bundesliga") {
+    url = "http://api.football-data.org/v4/competitions/BL1/standings";
+  }
+  // Add more conditions for other leagues if needed
   const headers = {
     "X-Auth-Token": "da0d2ae1e2de4f098cc873f90083f408",
   };

@@ -6,10 +6,7 @@
     <link href="opening-page-styles.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <img
-    src="images/TwelfthManLogo.jpg"
-    alt="TwelfthManLogo"
-  />
+  <img src="images/TwelfthManLogo.jpg" alt="TwelfthManLogo" />
 
   <body>
     <div class="bg-overlay"></div>
@@ -24,10 +21,14 @@
 
       <nav>
         <ul>
-          <li><a href="Predictions.html">Predictions</a></li>
-          <li><a href="Fixtures.html">Fixtures</a></li>
+          <li><a href="predictions.html">Predictions</a></li>
+          <li><a href="fixtures.html">Fixtures</a></li>
           <li class="dropdown">
-            <select name="league-tables" id="league-tables" onchange="redirectToLeagueTable()">
+            <select
+              name="league-tables"
+              id="league-tables"
+              onchange="redirectToLeagueTable()"
+            >
               <option value="" selected disabled>League Tables</option>
               <option value="PL">Premier League</option>
               <option value="Bundesliga">Bundesliga</option>
@@ -45,10 +46,10 @@
         // Redirect to the corresponding league table HTML page based on the selected option
         switch (selectedOption) {
           case "PL":
-            window.location.href = "PL/PL-league-table.html";
+            window.location.href = "league-table.html?league=pl";
             break;
           case "Bundesliga":
-            window.location.href = "Bundesliga/Bundesliga-League-Table.html";
+            window.location.href = "league-table.html?league=bundesliga";
             break;
           default:
             // Handle default case or do nothing

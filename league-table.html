@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Premier League Standings</title>
-    <link href="PL-league-table-style.css" rel="stylesheet" type="text/css" />
+    <link href="league-table-style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
 <!-------------Header--------------->
@@ -12,13 +12,20 @@
           <img src="/images/TwelfthManLogo.jpg" class="logo" />
           <ul>
             <li>
-              <a href="Opening-page.html">Home</a>
+              <a href="opening-page.html">Home</a>
             </li>
             <li>
-              <a href="Fixtures.html">Fixtures</a>
+              <a href="fixtures.html">Fixtures</a>
             </li>
             <li>
-              <a href="Predictions.html">Predictions</a>
+              <a href="predictions.html">Predictions</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle">League Tables</a>
+              <ul class="dropdown-menu">
+                <li><a href="league-table.html?league=pl" onclick="loadStandings('pl')">Premier League</a></li>
+                <li><a href="league-table.html?league=pl" onclick="loadStandings('bundesliga')">Bundesliga</a></li>
+              </ul>
             </li>
           </ul>
         </nav>
@@ -43,15 +50,8 @@
       </thead>
       <tbody></tbody>
     </table>
-    <ul>
-      <li><span class="dot zone1-4"></span>Champions League</li>
-      <li><span class="dot zone5-6"></span>Europa League</li>
-      <li>
-        <span class="dot zone7"></span>Europa Conference League Qualification
-      </li>
-      <li><span class="dot zone18-20"></span>Relegation</li>
-    </ul>
+    <ul id="zone-labels"></ul>
   </div>
-    <script src="PLstandings.js"></script>
+    <script src="standings.js"></script>
   </body>
 </html>
