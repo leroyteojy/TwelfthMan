@@ -2,6 +2,12 @@ fetch("http://localhost:3000/")
   .then((response) => response.json())
   .then((data) => {
     // Process the response data from the proxy server
+    const leagueName = data["competition"]["name"];
+    const seasonYear = data["filters"]["season"].slice(2);
+    const seasonNumber = `${seasonYear}/${(Number(seasonYear) + 1).toString()}`;
+    const headerElement = document.querySelector("#league-header");
+    headerElement.textContent = `${leagueName} - Season ${seasonNumber} Standings`;
+
     const datas = data["standings"][0]["table"];
     createTableRows(datas);
   })
@@ -9,6 +15,7 @@ fetch("http://localhost:3000/")
     // Handle errors
     console.error(error);
   });
+
 
 function createTableRows(datas) {
   const tbody = document.querySelector("#standings-table tbody");
@@ -31,7 +38,6 @@ function createTableRows(datas) {
     } else {
       positionCell.classList.add("position");
     }
-
     row.appendChild(positionCell);
 
     const teamCell = document.createElement("td");
@@ -39,8 +45,8 @@ function createTableRows(datas) {
     image.src = teamData.team.crest;
     image.classList.add("crest-image");
     teamCell.textContent = teamData.team.name;
-    teamCell.appendChild(image); // Append the image to the teamCell instead of the row
-    row.appendChild(teamCell); // Append the teamCell to the row
+    teamCell.appendChild(image);
+    row.appendChild(teamCell);
 
     const playedGamesCell = document.createElement("td");
     playedGamesCell.textContent = teamData.playedGames;
@@ -75,7 +81,25 @@ function createTableRows(datas) {
     row.appendChild(pointsCell);
 
     const formCell = document.createElement("td");
-    formCell.textContent = teamData.form;
+    const form = teamData.form;
+    const formArray = form.split(',');
+    
+    formArray.forEach(result => {
+      const resultSpan = document.createElement("span");
+
+      if (result === "W") {
+        resultSpan.style.color = "green";
+      } else if (result === "L") {
+        resultSpan.style.color = "red";
+      } else if (result === "D") {
+        resultSpan.style.color = "grey";
+      }
+
+      resultSpan.textContent = result;
+      resultSpan.style.fontWeight = "bold";
+      resultSpan.style.letterSpacing = "2px";
+      formCell.appendChild(resultSpan);
+    });
     row.appendChild(formCell);
 
     // Append the row to the table body

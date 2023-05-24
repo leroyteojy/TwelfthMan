@@ -9,8 +9,6 @@
   <img
     src="images/TwelfthManLogo.jpg"
     alt="TwelfthManLogo"
-    height="5%"
-    width="5%"
   />
 
   <body>
@@ -28,9 +26,35 @@
         <ul>
           <li><a href="Predictions.html">Predictions</a></li>
           <li><a href="Fixtures.html">Fixtures</a></li>
-          <li><a href="League-Table.html">League Tables</a></li>
+          <li class="dropdown">
+            <select name="league-tables" id="league-tables" onchange="redirectToLeagueTable()">
+              <option value="" selected disabled>League Tables</option>
+              <option value="PL">Premier League</option>
+              <option value="Bundesliga">Bundesliga</option>
+            </select>
+          </li>
         </ul>
       </nav>
     </div>
+
+    <script>
+      function redirectToLeagueTable() {
+        const selectElement = document.getElementById("league-tables");
+        const selectedOption = selectElement.value;
+
+        // Redirect to the corresponding league table HTML page based on the selected option
+        switch (selectedOption) {
+          case "PL":
+            window.location.href = "PL/PL-league-table.html";
+            break;
+          case "Bundesliga":
+            window.location.href = "Bundesliga/Bundesliga-League-Table.html";
+            break;
+          default:
+            // Handle default case or do nothing
+            break;
+        }
+      }
+    </script>
   </body>
 </html>

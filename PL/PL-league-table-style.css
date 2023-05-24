@@ -1,8 +1,10 @@
 body {
   font-family: "Poppins", sans-serif;
   background-color: rgb(240, 238, 238);
+  font-weight: bold;
   margin: 0; /* Add margin: 0 to remove default margin */
 }
+
 /*Header*/
 #header {
   width: 100%;
@@ -73,13 +75,19 @@ nav ul li a:hover::after {
   margin-right: auto;
   width: 1000px;
 }
+
 table {
   border-collapse: collapse;
 }
-th,
-td {
+
+th, td {
   padding: 8px;
   border: 1px solid black;
+  text-align: center;
+}
+
+td:nth-child(2) {
+  text-align: left;
 }
 
 .crest-image {
@@ -101,7 +109,7 @@ td {
 
 .zone1-4 {
   background-color: #16ff00;
-  color: white;
+  color: black;
 }
 
 .zone5-6 {
@@ -116,7 +124,7 @@ td {
 
 .zone18-20 {
   background-color: #fc2947;
-  color: white;
+  color: black;
 }
 
 ul {

@@ -34,11 +34,15 @@ body {
 
 img {
   float: right;
+  height: 5%;
+  width: 5%;
 }
 
 nav ul {
   list-style-type: none;
   font-size: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 nav li {
@@ -49,8 +53,69 @@ nav a:link,
 nav a:visited {
   background-color: black;
   color: white;
+  text-decoration: none;
+  padding: 10px 20px;
 }
 
 nav a:hover {
+  background-color: dodgerblue;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 250px;
+  Height: 62px;
+  margin: 0;
+}
+
+.dropdown select:focus {
+  outline: none;
+}
+
+.dropdown:after {
+  content: "\25BC";
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.dropdown-menu {
+  background-color: black;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  display: none;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu-item {
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu-item:hover {
   background-color: dodgerblue;
 }
