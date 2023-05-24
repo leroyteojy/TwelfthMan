@@ -20,6 +20,18 @@ function createTableRows(datas) {
     // Create and populate the cells for each team's data
     const positionCell = document.createElement("td");
     positionCell.textContent = teamData.position;
+    if (teamData.position >= 1 && teamData.position <= 4) {
+      positionCell.classList.add("position", "zone1-4");
+    } else if (teamData.position >= 5 && teamData.position <= 6) {
+      positionCell.classList.add("position", "zone5-6");
+    } else if (teamData.position === 7) {
+      positionCell.classList.add("position", "zone7");
+    } else if (teamData.position >= 18 && teamData.position <= 20) {
+      positionCell.classList.add("position", "zone18-20");
+    } else {
+      positionCell.classList.add("position");
+    }
+
     row.appendChild(positionCell);
 
     const teamCell = document.createElement("td");
@@ -45,6 +57,14 @@ function createTableRows(datas) {
     const lossesCell = document.createElement("td");
     lossesCell.textContent = teamData.lost;
     row.appendChild(lossesCell);
+
+    const goalforCell = document.createElement("td");
+    goalforCell.textContent = teamData.goalsFor;
+    row.appendChild(goalforCell);
+
+    const goalagainstCell = document.createElement("td");
+    goalagainstCell.textContent = teamData.goalsAgainst;
+    row.appendChild(goalagainstCell);
 
     const goaldiffCell = document.createElement("td");
     goaldiffCell.textContent = teamData.goalDifference;

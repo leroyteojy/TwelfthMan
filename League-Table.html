@@ -3,18 +3,27 @@
   <head>
     <title>Football Standings</title>
     <link href="league-table-style.css" rel="stylesheet" type="text/css" />
-    <style>
-      table {
-        border-collapse: collapse;
-      }
-      th,
-      td {
-        padding: 8px;
-        border: 1px solid black;
-      }
-    </style>
   </head>
   <body>
+<!-------------Header--------------->
+    <div id="header">
+      <div class="container">
+        <nav>
+          <img src="images/TwelfthManLogo.jpg" class="logo" />
+          <ul>
+            <li>
+              <a href="Opening-page.html">Home</a>
+            </li>
+            <li>
+              <a href="Fixtures.html">Fixtures</a>
+            </li>
+            <li>
+              <a href="Predictions.html">Predictions</a>
+            </li>
+          </ul>
+        </nav>
+<!-------------Table--------------->
+    <div class="center">
     <table id="standings-table">
       <thead>
         <tr>
@@ -24,6 +33,8 @@
           <th>Win</th>
           <th>Draw</th>
           <th>Lose</th>
+          <th>GF</th>
+          <th>GA</th>
           <th>GD</th>
           <th>Points</th>
           <th>Form</th>
@@ -31,7 +42,15 @@
       </thead>
       <tbody></tbody>
     </table>
-
+    <ul>
+      <li><span class="dot zone1-4"></span>Champions League</li>
+      <li><span class="dot zone5-6"></span>Europa League</li>
+      <li>
+        <span class="dot zone7"></span>Europa Conference League Qualification
+      </li>
+      <li><span class="dot zone18-20"></span>Relegation</li>
+    </ul>
+  </div>
     <script src="standings.js"></script>
   </body>
 </html>
