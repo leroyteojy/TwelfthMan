@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Premier League Standings</title>
+    <title>League Standings</title>
     <link href="league-table-style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
@@ -15,16 +15,19 @@
               <a href="opening-page.html">Home</a>
             </li>
             <li>
-              <a href="fixtures.html">Fixtures</a>
+              <a href="predictions.html">Predictions</a>
             </li>
             <li>
-              <a href="predictions.html">Predictions</a>
+              <a href="fixtures.html">Fixtures</a>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle">League Tables</a>
               <ul class="dropdown-menu">
-                <li><a href="league-table.html?league=pl" onclick="loadStandings('pl')">Premier League</a></li>
-                <li><a href="league-table.html?league=pl" onclick="loadStandings('bundesliga')">Bundesliga</a></li>
+                <li><a href="league-table.html?league=pl">Premier League</a></li>
+                <li><a href="league-table.html?league=bundesliga">Bundesliga</a></li>
+                <li><a href="league-table.html?league=primeradivision">Primera Division</a></li>
+                <li><a href="league-table.html?league=seriea">Serie A</a></li>
+                <li><a href="league-table.html?league=ligue1">Ligue 1</a></li>
               </ul>
             </li>
           </ul>
@@ -45,7 +48,6 @@
           <th>GA</th>
           <th>GD</th>
           <th>Points</th>
-          <th>Form</th>
         </tr>
       </thead>
       <tbody></tbody>

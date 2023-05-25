@@ -7,6 +7,12 @@ let defaultLeague = "pl";
 
 if (league === "bundesliga") {
   defaultLeague = "bundesliga";
+} else if (league === "primeradivision") {
+  defaultLeague = "primeradivision";
+} else if (league === "seriea") {
+  defaultLeague = "seriea";
+} else if (league === "ligue1") {
+  defaultLeague = "ligue1";
 }
 
 // Call the loadStandings function with the default league
@@ -66,6 +72,7 @@ function createTableRows(datas, league) {
         positionCell.classList.add("relegation");
         applyDotClass("relegation", "Relegation");
       }
+
     } else if (league == "bundesliga") {
       if (teamData.position >= 1 && teamData.position <= 4) {
         positionCell.classList.add("champions-league");
@@ -86,7 +93,65 @@ function createTableRows(datas, league) {
         positionCell.classList.add("relegation");
         applyDotClass("relegation", "Relegation");
       }
+
+    } else if (league == "primeradivision") {
+      if (teamData.position >= 1 && teamData.position <= 4) {
+        positionCell.classList.add("champions-league");
+        applyDotClass("champions-league", "Champions League");
+      } else if (teamData.position >= 5 && teamData.position <= 6) {
+        positionCell.classList.add("europa-league");
+        applyDotClass("europa-league", "Europa League");
+      } else if (teamData.position === 7) {
+        positionCell.classList.add("europa-conf-league-qual");
+        applyDotClass(
+          "europa-conf-league-qual",
+          "Europa Conference League Qualification"
+        );
+      } else if (teamData.position >= 18 && teamData.position <= 20) {
+        positionCell.classList.add("relegation");
+        applyDotClass("relegation", "Relegation");
+      }
+
+    } else if (league == "seriea") {
+      if (teamData.position >= 1 && teamData.position <= 4) {
+        positionCell.classList.add("champions-league");
+        applyDotClass("champions-league", "Champions League");
+      } else if (teamData.position >= 5 && teamData.position <= 6) {
+        positionCell.classList.add("europa-league");
+        applyDotClass("europa-league", "Europa League");
+      } else if (teamData.position === 7) {
+        positionCell.classList.add("europa-conf-league-qual");
+        applyDotClass(
+          "europa-conf-league-qual",
+          "Europa Conference League Qualification"
+        );
+      } else if (teamData.position >= 18 && teamData.position <= 20) {
+        positionCell.classList.add("relegation");
+        applyDotClass("relegation", "Relegation");
+      }
+
+    } else if (league == "ligue1") {
+      if (teamData.position >= 1 && teamData.position <= 2) {
+        positionCell.classList.add("champions-league");
+        applyDotClass("champions-league", "Champions League");
+      } else if (teamData.position === 3) {
+        positionCell.classList.add("champions-league-qual");
+        applyDotClass("champions-league-qual", "Champions League Qualification");
+      } else if (teamData.position === 4) {
+        positionCell.classList.add("europa-league");
+        applyDotClass("europa-league", "Europa League");
+      } else if (teamData.position === 5) {
+        positionCell.classList.add("europa-conf-league-qual");
+        applyDotClass(
+          "europa-conf-league-qual",
+          "Europa Conference League Qualification"
+        );
+      } else if (teamData.position >= 17 && teamData.position <= 20) {
+        positionCell.classList.add("relegation");
+        applyDotClass("relegation", "Relegation");
+      }
     }
+
     zoneLabels.appendChild(zoneLabel);
     row.appendChild(positionCell);
 
@@ -129,28 +194,6 @@ function createTableRows(datas, league) {
     const pointsCell = document.createElement("td");
     pointsCell.textContent = teamData.points;
     row.appendChild(pointsCell);
-
-    const formCell = document.createElement("td");
-    const form = teamData.form;
-    const formArray = form.split(",");
-
-    formArray.forEach((result) => {
-      const resultSpan = document.createElement("span");
-
-      if (result === "W") {
-        resultSpan.style.color = "green";
-      } else if (result === "L") {
-        resultSpan.style.color = "red";
-      } else if (result === "D") {
-        resultSpan.style.color = "grey";
-      }
-
-      resultSpan.textContent = result;
-      resultSpan.style.fontWeight = "bold";
-      resultSpan.style.letterSpacing = "2px";
-      formCell.appendChild(resultSpan);
-    });
-    row.appendChild(formCell);
 
     // Append the row to the table body
     tbody.appendChild(row);

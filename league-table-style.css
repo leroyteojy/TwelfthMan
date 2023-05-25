@@ -129,17 +129,22 @@ td:nth-child(2) {
 }
 
 .champions-league {
-  background-color: #16ff00;
+  background-color: #59c150;
+  color: black;
+}
+
+.champions-league-qual {
+  background-color: #f1f442;
   color: black;
 }
 
 .europa-league {
-  background-color: #8bf5fa;
+  background-color: #19a7ce;
   color: black;
 }
 
 .europa-conf-league-qual {
-  background-color: #19a7ce;
+  background-color: #8bf5fa;
   color: black;
 }
 .relegation-qual {
@@ -147,7 +152,7 @@ td:nth-child(2) {
   color: black;
 }
 .relegation {
-  background-color: #fc2947;
+  background-color: #e52e2e;
   color: black;
 }
 

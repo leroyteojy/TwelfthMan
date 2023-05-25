@@ -32,6 +32,9 @@
               <option value="" selected disabled>League Tables</option>
               <option value="PL">Premier League</option>
               <option value="Bundesliga">Bundesliga</option>
+              <option value="Primera Division">Primera Division</option>
+              <option value="Serie A">Serie A</option>
+              <option value="Ligue 1">Ligue 1</option>
             </select>
           </li>
         </ul>
@@ -50,6 +53,15 @@
             break;
           case "Bundesliga":
             window.location.href = "league-table.html?league=bundesliga";
+            break;
+          case "Primera Division":
+            window.location.href = "league-table.html?league=primeradivision";
+            break;
+          case "Serie A":
+            window.location.href = "league-table.html?league=seriea";
+            break;
+          case "Ligue 1":
+            window.location.href = "league-table.html?league=ligue1";
             break;
           default:
             // Handle default case or do nothing
