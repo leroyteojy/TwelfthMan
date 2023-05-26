@@ -71,7 +71,7 @@ nav ul li a:hover::after {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   padding: 0;
-}
+  }
 
 .dropdown-menu a {
   color: black;
@@ -89,6 +89,11 @@ nav ul li a:hover::after {
 }
 .dropdown-menu a:hover::after {
   width: 0; /* Remove the hover effect on the underline */
+}
+
+.dropdown-menu ul,
+.dropdown-menu li {
+  margin: 0;
 }
 
 /*Table*/
