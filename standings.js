@@ -72,7 +72,6 @@ function createTableRows(datas, league) {
         positionCell.classList.add("relegation");
         applyDotClass("relegation", "Relegation");
       }
-
     } else if (league == "bundesliga") {
       if (teamData.position >= 1 && teamData.position <= 4) {
         positionCell.classList.add("champions-league");
@@ -93,7 +92,6 @@ function createTableRows(datas, league) {
         positionCell.classList.add("relegation");
         applyDotClass("relegation", "Relegation");
       }
-
     } else if (league == "primeradivision") {
       if (teamData.position >= 1 && teamData.position <= 4) {
         positionCell.classList.add("champions-league");
@@ -111,7 +109,6 @@ function createTableRows(datas, league) {
         positionCell.classList.add("relegation");
         applyDotClass("relegation", "Relegation");
       }
-
     } else if (league == "seriea") {
       if (teamData.position >= 1 && teamData.position <= 4) {
         positionCell.classList.add("champions-league");
@@ -129,14 +126,16 @@ function createTableRows(datas, league) {
         positionCell.classList.add("relegation");
         applyDotClass("relegation", "Relegation");
       }
-
     } else if (league == "ligue1") {
       if (teamData.position >= 1 && teamData.position <= 2) {
         positionCell.classList.add("champions-league");
         applyDotClass("champions-league", "Champions League");
       } else if (teamData.position === 3) {
         positionCell.classList.add("champions-league-qual");
-        applyDotClass("champions-league-qual", "Champions League Qualification");
+        applyDotClass(
+          "champions-league-qual",
+          "Champions League Qualification"
+        );
       } else if (teamData.position === 4) {
         positionCell.classList.add("europa-league");
         applyDotClass("europa-league", "Europa League");
