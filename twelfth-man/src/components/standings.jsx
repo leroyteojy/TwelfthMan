@@ -264,7 +264,7 @@ function StandingsPage() {
               </li>
               <li className="dropdown1">
                 <Link to="#" className="dropdown1-toggle">
-                  Standings
+                  League Tables
                 </Link>
                 <ul className="dropdown1-menu">
                   <li>
