@@ -16,7 +16,7 @@ To use TwelfthMan, you need to have the following installed on your machine:
 3. Install the dependencies by running the following command:
 ``` npm install ```
 4. Once the dependencies are installed, start the app by running the following command:
-``` npm run dev```
+``` npm run dev ```
 
 5. The app will start running, and you can access it in your browser at `http://localhost:3000`.
 
@@ -31,7 +31,7 @@ To use TwelfthMan, you need to have the following installed on your machine:
 - The table displays the team positions, names, played games, wins, draws, losses, goals for, goals against, goal difference, and points.
 - At the bottom of the table, you will find labels indicating different zones such as Champions League, Europa League, and Relegation.
 
-Please note that the predictions and fixtures pages are currently under development and may not be functional.
+**Please note that the predictions and fixtures pages are currently _under development_ and may not be functional.**
 
 
  
