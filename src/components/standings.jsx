@@ -77,92 +77,61 @@ function StandingsPage() {
     if (league === "pl") {
       if (position >= 1 && position <= 4) {
         label = "champions-league";
-        applyDotClass(label, "Champions League");
       } else if (position >= 5 && position <= 6) {
         label = "europa-league";
-        applyDotClass(label, "Europa League");
       } else if (position === 7) {
         label = "europa-conf-league-qual";
-        applyDotClass(label, "Europa League Qualification");
       } else if (position >= 18 && position <= 20) {
         label = "relegation";
-        applyDotClass(label, "Relegation");
       }
     } else if (league === "bundesliga") {
       if (position >= 1 && position <= 4) {
         label = "champions-league";
-        applyDotClass(label, "Champions League");
       } else if (position === 5) {
         label = "europa-league";
-        applyDotClass(label, "Europa League");
       } else if (position === 6) {
         label = "europa-conf-league-qual";
-        applyDotClass(label, "Europa League Qualification");
       } else if (position === 16) {
         label = "relegation-qual";
-        applyDotClass(label, "Relegation Qualification");
       } else if (position >= 17 && position <= 18) {
         label = "relegation";
-        applyDotClass(label, "Relegation");
       }
     } else if (league === "primeradivision") {
       if (position >= 1 && position <= 4) {
         label = "champions-league";
-        applyDotClass(label, "Champions League");
       } else if (position >= 5 && position <= 6) {
         label = "europa-league";
-        applyDotClass(label, "Europa League");
       } else if (position === 7) {
         label = "europa-conf-league-qual";
-        applyDotClass(label, "Europa League Qualification");
       } else if (position >= 18 && position <= 20) {
         label = "relegation";
-        applyDotClass(label, "Relegation");
       }
     } else if (league === "seriea") {
       if (position >= 1 && position <= 4) {
         label = "champions-league";
-        applyDotClass(label, "Champions League");
       } else if (position >= 5 && position <= 6) {
         label = "europa-league";
-        applyDotClass(label, "Europa League");
       } else if (position === 7) {
         label = "europa-conf-league-qual";
-        applyDotClass(label, "Europa League Qualification");
       } else if (position >= 18 && position <= 20) {
         label = "relegation";
-        applyDotClass(label, "Relegation");
       }
     } else if (league === "ligue1") {
       if (position >= 1 && position <= 2) {
         label = "champions-league";
-        applyDotClass(label, "Champions League");
       } else if (position === 3) {
         label = "champions-league-qual";
-        applyDotClass(label, "Champions League Qualification");
       } else if (position === 4) {
         label = "europa-league";
-        applyDotClass(label, "Europa League");
       } else if (position === 5) {
         label = "europa-conf-league-qual";
-        applyDotClass(label, "Europa League Qualification");
       } else if (position >= 17 && position <= 20) {
         label = "relegation";
-        applyDotClass(label, "Relegation");
       }
     }
 
     return label;
   };
-
-  function applyDotClass(className, description) {
-    return (
-      <li>
-        <span className={`dot ${className}`} />
-        <span>{description}</span>
-      </li>
-    );
-  }
 
   const getDescription = (zone) => {
     if (zone === "champions-league") {
@@ -257,7 +226,7 @@ function StandingsPage() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/predictions">Predictions</Link>
+                <Link to="/prediction">Predictions</Link>
               </li>
               <li>
                 <Link to="/fixtures">Fixtures</Link>

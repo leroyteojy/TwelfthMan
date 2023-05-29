@@ -53,10 +53,10 @@ function OpeningPage() {
         <nav>
           <ul>
             <li>
-              <a href="predictions.html">Predictions</a>
+              <Link to="/prediction">Predictions</Link>
             </li>
             <li>
-              <a href="fixtures.html">Fixtures</a>
+              <Link to="/fixtures">Fixtures</Link>
             </li>
             <li className="dropdown">
               <select
