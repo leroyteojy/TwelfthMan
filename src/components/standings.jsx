@@ -133,22 +133,6 @@ function StandingsPage() {
     return label;
   };
 
-  const getDescription = (zone) => {
-    if (zone === "champions-league") {
-      return "Champions League";
-    } else if (zone === "europa-league") {
-      return "Europa League";
-    } else if (zone === "champions-league-qual") {
-      return "Champions League Qualification";
-    } else if (zone === "europa-conf-league-qual") {
-      return "Europa Conference League Qualification";
-    } else if (zone === "relegation-qual") {
-      return "Relegation Qualification";
-    } else if (zone === "relegation") {
-      return "Relegation";
-    }
-  };
-
   const renderTable = () => {
     if (standingsData) {
       const leagueName = standingsData.competition.name;
