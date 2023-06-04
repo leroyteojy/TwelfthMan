@@ -11,14 +11,7 @@ To use TwelfthMan, you need to have the following installed on your machine:
 
 ## Getting Started
 
-1. Clone the repository or download the source code.
-2. Open a terminal and navigate to the project directory.
-3. Install the dependencies by running the following command:
-``` npm install ```
-4. Once the dependencies are installed, start the app by running the following command:
-``` npm run dev ```
-
-5. The app will start running, and you can access it in your browser at `http://localhost:3000`.
+Access the app via the link: https://twelfth-man-dbad2.web.app/
 
 ## Usage
 
