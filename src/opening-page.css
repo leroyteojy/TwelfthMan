@@ -25,7 +25,6 @@
   text-align: center;
   color: white;
   font-size: 60px;
- 
 }
 
 body {
@@ -50,13 +49,12 @@ nav ul {
 }
 
 nav li {
-
   display: inline;
 }
 
 nav a:link,
 nav a:visited {
-  color: black;
+  color: white;
   text-decoration: none;
   padding: 14.5px 20px;
 }
@@ -75,7 +73,7 @@ nav a:hover {
   appearance: none;
   -webkit-appearance: none;
   background-color: transparent;
-  color:black;
+  color:white;
   border: none;
   font-size: 30px;
   padding: 10px 20px;
@@ -91,7 +89,7 @@ nav a:hover {
 
 .dropdown:after {
   content: "\25BC";
-  color: black;
+  color: white;
   font-size: 20px;
   position: absolute;
   top: 50%;
@@ -123,4 +121,10 @@ nav a:hover {
 
 .dropdown-menu-item:hover {
   background-color: dodgerblue;
+}
+
+#tableoptions {
+  /* CSS styles for the "League Tables" option */
+  /* Example: */
+  color: black;
 }

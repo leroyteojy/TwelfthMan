@@ -20,19 +20,14 @@
 
     const loadStandings = (league) => {
       fetch(`https://damp-bayou-37411.herokuapp.com/standings?league=${league}`)
-        .then((response) => {
-          console.log('Response status:', response.status);
-          return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
-          console.log('Data:', data);
           setStandingsData(data);
         })
         .catch((error) => {
           console.error(error);
         });
     };
-    
 
     const createTableRows = (datas, league) => {
       return datas.map((teamData) => {

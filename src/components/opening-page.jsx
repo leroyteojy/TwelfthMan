@@ -67,11 +67,11 @@ function OpeningPage() {
                 <option value="" selected disabled>
                   League Tables
                 </option>
-                <option value="PL">Premier League</option>
-                <option value="Bundesliga">Bundesliga</option>
-                <option value="Primera Division">Primera Division</option>
-                <option value="Serie A">Serie A</option>
-                <option value="Ligue 1">Ligue 1</option>
+                <option value="PL" id="tableoptions">Premier League</option>
+                <option value="Bundesliga" id="tableoptions">Bundesliga</option>
+                <option value="Primera Division" id="tableoptions">Primera Division</option>
+                <option value="Serie A" id="tableoptions">Serie A</option>
+                <option value="Ligue 1" id="tableoptions">Ligue 1</option>
               </select>
             </li>
           </ul>
