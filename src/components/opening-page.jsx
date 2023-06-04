@@ -53,7 +53,7 @@ function OpeningPage() {
         <nav>
           <ul>
             <li>
-              <Link to="/prediction">Predictions</Link>
+              <Link to="/predictions">Predictions</Link>
             </li>
             <li>
               <Link to="/fixtures">Fixtures</Link>

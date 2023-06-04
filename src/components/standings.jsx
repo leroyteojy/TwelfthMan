@@ -210,7 +210,7 @@
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/prediction">Predictions</Link>
+                  <Link to="/predictions">Predictions</Link>
                 </li>
                 <li>
                   <Link to="/fixtures">Fixtures</Link>
