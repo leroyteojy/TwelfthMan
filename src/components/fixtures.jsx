@@ -68,7 +68,7 @@ function FixturesPage() {
 
   const renderLeagueOptions = () => {
     const leagues = [
-      "all",
+      "All Leagues",
       "Premier League",
       "Bundesliga",
       "Primera Division",
@@ -94,7 +94,7 @@ function FixturesPage() {
       return (
         <div>
           <div className="league-filter">
-            <label htmlFor="league-select">Filter by league:</label>
+            <label htmlFor="league-select">Filter by league: </label>
             <select
               id="league-select"
               value={selectedLeague}
