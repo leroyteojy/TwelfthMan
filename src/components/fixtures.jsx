@@ -12,7 +12,7 @@ function FixturesPage() {
   }, []);
 
   const loadFixtures = () => {
-    fetch("http://localhost:8080/fixtures")
+    fetch("https://damp-bayou-37411.herokuapp.com/fixtures")
       .then((response) => response.json())
       .then((data) => {
         setFixturesData(data);
