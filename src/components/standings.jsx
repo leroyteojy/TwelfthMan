@@ -19,7 +19,7 @@ function StandingsPage() {
   }, [location.search]);
 
   const loadStandings = (league) => {
-    fetch(`https://damp-bayou-37411.herokuapp.com/standings?league=${league}`)
+    fetch(`http://localhost:8080/standings?league=${league}`)
       .then((response) => response.json())
       .then((data) => {
         setStandingsData(data);

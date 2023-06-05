@@ -12,7 +12,7 @@ function FixturesPage() {
   }, []);
 
   const loadFixtures = () => {
-    fetch("https://damp-bayou-37411.herokuapp.com/fixtures")
+    fetch("http://localhost:8080/fixtures")
       .then((response) => response.json())
       .then((data) => {
         setFixturesData(data);
@@ -28,7 +28,17 @@ function FixturesPage() {
       const awayTeam = fixture.awayTeam.name;
       const homeTeamCrest = fixture.homeTeam.crestUrl;
       const awayTeamCrest = fixture.awayTeam.crestUrl;
-      const date = new Date(fixture.utcDate).toLocaleString();
+      const dateTime = new Date(fixture.utcDate).toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      });
+      
+      const [date, time] = dateTime.split(',');
+
       const score =
         fixture.status === "FINISHED"
           ? `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
@@ -37,6 +47,7 @@ function FixturesPage() {
 
       return (
         <tr key={fixture.id}>
+          <td>{league}</td>
           <td>
             <img src={fixture.homeTeam.crest} alt={`${homeTeam} Crest`} />
             {homeTeam}
@@ -45,9 +56,13 @@ function FixturesPage() {
             <img src={fixture.awayTeam.crest} alt={`${awayTeam} Crest`} />
             {awayTeam}
           </td>
-          <td>{date}</td>
+          <td>
+            <div>
+              <div>{date}</div>
+              <div>{time}</div>
+            </div>
+          </td>
           <td>{score}</td>
-          <td>{league}</td>
         </tr>
       );
     });
@@ -106,12 +121,12 @@ function FixturesPage() {
           <h2 className="fixtures-table">{headerText}</h2>
           <table id="fixtures-table">
             <thead>
-              <tr>
+              <tr className="table-header-row">
+                <th>League</th>
                 <th>Home Team</th>
                 <th>Away Team</th>
-                <th>Date</th>
+                <th>Date & Time</th>
                 <th>Score</th>
-                <th>League</th>
               </tr>
             </thead>
             <tbody>{createFixtureRows(filteredFixtures)}</tbody>
@@ -165,7 +180,11 @@ function FixturesPage() {
             </ul>
           </nav>
         </div>
-        <div className="center">{renderTable()}</div>
+        <div className="center">
+          <div className="table-container">
+            {renderTable()}
+          </div>
+        </div>
       </div>
     </div>
   );

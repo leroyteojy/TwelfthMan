@@ -28,7 +28,7 @@ app.use("/standings", async (req, res) => {
     url = "http://api.football-data.org/v4/competitions/SA/standings";
   } else if (league === "ligue1") {
     url = "http://api.football-data.org/v4/competitions/FL1/standings";
-  }
+  } 
 
   // Add more conditions for other leagues if needed
   const headers = {
@@ -48,4 +48,22 @@ app.use("/standings", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Proxy server is running on http://localhost:${port}`);
+});
+
+
+app.use("/fixtures", async (req, res) => {
+  const headers = {
+    "X-Auth-Token": "da0d2ae1e2de4f098cc873f90083f408",
+  };
+
+  try {
+    const response = await fetch("http://api.football-data.org/v4/matches", {
+      headers,
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });

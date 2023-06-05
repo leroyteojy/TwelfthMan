@@ -62,7 +62,7 @@
   width: 100%;
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu for top container*/
 .fixtures-header-container .dropdown1-menu {
   display: none;
   position: absolute;
@@ -96,3 +96,81 @@
 .fixtures-header-container .dropdown1-menu li {
   margin: 0;
 }
+
+/* Dropdown Menu for league selector*/
+.league-filter {
+  float: right;
+  margin-bottom: 20px;
+}
+
+.fixtures-header-container .league-filter select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 280px; /* Set the width for the dropdown */
+}
+
+.fixtures-header-container .league-filter select:hover {
+  border-color: black;
+}
+
+.fixtures-header-container .league-filter select:focus {
+  outline: none;
+  border-color: #143031;
+  box-shadow: 0 0 0 2px rgba(20, 48, 49, 0.2);
+}
+
+.fixtures-header-container .league-filter label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.center {
+  margin-top: 20px; 
+  margin-left: 20px;
+}
+
+#fixtures-table {
+  margin: 0 auto;
+}
+
+#fixtures-table td img {
+  width: 50px;
+}
+
+#fixtures-table th {
+  font-size: 25px;
+}
+
+#fixtures-table th,
+#fixtures-table td {
+  padding: 30px; /* Adjust the padding value as needed */
+  text-align: center;
+}
+
+.table-container {
+  margin: 30px auto;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.table-container table {
+  width: 100%;
+}
+
+.table-container th,
+.table-container td {
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(249, 249, 249);
+}
+
+.table-container th {
+  background-color: rgb(210, 210, 210);
+  font-weight: bold;
+  color: black;
+}
+
+
+
