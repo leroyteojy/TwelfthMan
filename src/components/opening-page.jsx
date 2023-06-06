@@ -30,8 +30,8 @@ function OpeningPage() {
       case "Primeira Liga":
         navigate("/standings?league=primeiraliga");
         break;
-      case "Primeira Liga":
-        navigate("/standings?league=primeiraliga");
+      case "Campeonato Brasileiro Série A":
+        navigate("/standings?league=campeonatobrasileiroseriea");
         break;
       case "Eredivisie":
         navigate("/standings?league=eredivisie");
