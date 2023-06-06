@@ -42,6 +42,15 @@ function PredictionsPage() {
                   <li>
                     <Link to="/standings?league=ligue1">Ligue 1</Link>
                   </li>
+                  <li>
+                    <Link to="/standings?league=primeiraliga">Primeira Liga</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=eredivisie">Eredivisie</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=campeonatobrasileiroseriea">Campeonato Brasileiro Série A</Link>
+                  </li>
                 </ul>
               </li>
             </ul>

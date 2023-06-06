@@ -27,6 +27,15 @@ function OpeningPage() {
       case "Ligue 1":
         navigate("/standings?league=ligue1");
         break;
+      case "Primeira Liga":
+        navigate("/standings?league=primeiraliga");
+        break;
+      case "Primeira Liga":
+        navigate("/standings?league=primeiraliga");
+        break;
+      case "Eredivisie":
+        navigate("/standings?league=eredivisie");
+        break;
       default:
         // Handle default case or do nothing
         break;
@@ -72,6 +81,9 @@ function OpeningPage() {
                 <option value="Primera Division" id="tableoptions">Primera Division</option>
                 <option value="Serie A" id="tableoptions">Serie A</option>
                 <option value="Ligue 1" id="tableoptions">Ligue 1</option>
+                <option value="Primeira Liga" id="tableoptions">Primeira Liga</option>
+                <option value="Eredivisie" id="tableoptions">Eredivisie</option>
+                <option value="Campeonato Brasileiro Série A" id="tableoptions">Campeonato Brasileiro Série A</option>
               </select>
             </li>
           </ul>

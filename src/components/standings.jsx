@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./../league-table.css";
 import TwelfthManLogo from "./../images/TwelfthManLogo.jpg";
+import Campeonato_Brasileiro_Serie_A_logo from ".//..//images//Campeonato_Brasileiro_Serie_A_logo.webp"
 import { Link, useLocation } from "react-router-dom";
 
 function StandingsPage() {
@@ -128,6 +129,44 @@ function StandingsPage() {
       } else if (position >= 17 && position <= 20) {
         label = "relegation";
       }
+    } else if (league === "campeonatobrasileiroseriea") {
+      if (position >= 1 && position <= 4) {
+        label = "copa-libertadores";
+      } else if (position >= 5 && position <= 6) {
+        label = "copa-sudamericana";
+      } else if (position >= 7 && position <= 12) {
+        label = "copa-libertadores-qual";
+      } else if (position >= 17 && position <= 20) {
+        label = "relegation";
+      }
+    } else if (league === "primeiraliga") {
+      if (position >= 1 && position <= 2) {
+        label = "champions-league";
+      } else if (position === 3) {
+        label = "champions-league-qual";
+      } else if (position >= 4 && position <= 5) {
+        label = "europa-conf-league-qual";
+      } else if (position === 16) {
+        label = "relegation-qual";
+      } else if (position >= 17 && position <= 18) {
+        label = "relegation";
+      }
+    } else if (league === "eredivisie") {
+      if (position === 1) {
+        label = "champions-league";
+      } else if (position === 2) {
+        label = "champions-league-qual";
+      } else if (position === 3) {
+        label = "europa-league";
+      } else if (position === 4) {
+        label = "europa-conf-league-qual";
+      } else if (position >= 5 && position <= 8) {
+        label = "europa-conf-league-playoff";
+      } else if (position === 16) {
+        label = "relegation-qual";
+      } else if (position >= 17 && position <= 18) {
+        label = "relegation";
+      }
     }
 
     return label;
@@ -138,25 +177,51 @@ function StandingsPage() {
       const leagueName = standingsData.competition.name;
       const seasonYear = standingsData.filters.season.slice(2);
       const seasonNumber = `${seasonYear}/${Number(seasonYear) + 1}`;
-      const headerText = `${leagueName} - Season ${seasonNumber} Standings`;
+      const leagueEmblem = standingsData.competition.emblem;
+      const countryFlag = standingsData.area.flag;
+      const headerText = (
+        <div className="header-text">
+          {leagueName === "Campeonato Brasileiro Série A" ? (
+            <img src={Campeonato_Brasileiro_Serie_A_logo} alt={`${leagueName} Emblem`} className="league-emblem" />
+              ) : (
+            <img src={leagueEmblem} alt={`${leagueName} Emblem`} className="league-emblem" />
+          )}
+          <span>Season {seasonNumber} Standings</span>
+        </div>
+      );
+      
+      let zoneLabels;
 
-      const zoneLabels = [
-        { className: "champions-league", description: "Champions League" },
-        {
-          className: "champions-league-qual",
-          description: "Champions League Qualification",
-        },
-        { className: "europa-league", description: "Europa League" },
-        {
-          className: "europa-conf-league-qual",
-          description: "Europa League Qualification",
-        },
-        {
-          className: "relegation-qual",
-          description: "Relegation Qualification",
-        },
-        { className: "relegation", description: "Relegation" },
-      ];
+      if (leagueName == "Campeonato Brasileiro Série A") {
+        zoneLabels = [
+          { className: "copa-libertadores", description: "Copa Libertadores" },
+          { className: "copa-sudamericana",description: "Copa Sudamericana" },
+          { className: "copa-libertadores-qual", description: "Copa Libertadores Qualification" },
+          { className: "relegation", description: "Relegation" },
+        ]; 
+      } else {
+        zoneLabels = [
+          { className: "champions-league", description: "Champions League" },
+          {
+            className: "champions-league-qual",
+            description: "Champions League Qualification",
+          },
+          { className: "europa-league", description: "Europa League" },
+          {
+            className: "europa-conf-league-qual",
+            description: "Europa Conference League Qualification",
+          },
+          {
+            className: "europa-conf-league-playoff",
+            description: "Europa Conference League Play-Off",
+          },
+          {
+            className: "relegation-qual",
+            description: "Relegation Qualification",
+          },
+          { className: "relegation", description: "Relegation" },
+        ];
+      } 
 
       return (
         <div>
@@ -236,6 +301,15 @@ function StandingsPage() {
                   </li>
                   <li>
                     <Link to="/standings?league=ligue1">Ligue 1</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=primeiraliga">Primeira Liga</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=eredivisie">Eredivisie</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=campeonatobrasileiroseriea">Campeonato Brasileiro Série A</Link>
                   </li>
                 </ul>
               </li>

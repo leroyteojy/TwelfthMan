@@ -28,6 +28,12 @@ app.use("/standings", async (req, res) => {
     url = "http://api.football-data.org/v4/competitions/SA/standings";
   } else if (league === "ligue1") {
     url = "http://api.football-data.org/v4/competitions/FL1/standings";
+  } else if (league === "campeonatobrasileiroseriea") {
+    url = "http://api.football-data.org/v4/competitions/BSA/standings";
+  } else if (league === "primeiraliga") {
+    url = "http://api.football-data.org/v4/competitions/PPL/standings";
+  } else if (league === "eredivisie") {
+    url = "http://api.football-data.org/v4/competitions/DED/standings";
   } 
 
   // Add more conditions for other leagues if needed

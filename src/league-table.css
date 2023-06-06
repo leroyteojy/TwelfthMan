@@ -148,13 +148,28 @@
   color: black;
 }
 
+.league-table-container .copa-libertadores {
+  background-color: #59c150;
+  color: black;
+}
+
 .league-table-container .champions-league-qual {
   background-color: #f1f442;
   color: black;
 }
 
+.league-table-container .copa-sudamericana {
+  background-color: #f1f442;
+  color: black;
+}
+
 .league-table-container .europa-league {
-  background-color: #19a7ce;
+  background-color: #507efa;
+  color: black;
+}
+
+.league-table-container .copa-libertadores-qual {
+  background-color: #507efa;
   color: black;
 }
 
@@ -162,6 +177,12 @@
   background-color: #8bf5fa;
   color: black;
 }
+
+.league-table-container .europa-conf-league-playoff {
+  background-color: #bdafe4;
+  color: black;
+}
+
 
 .league-table-container .relegation-qual {
   background-color: #ff7b00;
@@ -185,4 +206,16 @@
   height: 20px;
   border-radius: 50%;
   margin-right: 5px;
+}
+
+.header-text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the left */
+}
+
+.league-emblem {
+  margin-right: 20px;  /* Adjust the margin as needed */
+  height: 80px;
+  width: 80px;
 }

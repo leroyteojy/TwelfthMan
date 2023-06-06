@@ -26,8 +26,7 @@ function FixturesPage() {
     return fixtures.map((fixture) => {
       const homeTeam = fixture.homeTeam.name;
       const awayTeam = fixture.awayTeam.name;
-      const homeTeamCrest = fixture.homeTeam.crestUrl;
-      const awayTeamCrest = fixture.awayTeam.crestUrl;
+      const competition = fixture.competition;
       const dateTime = new Date(fixture.utcDate).toLocaleString('en-US', {
         year: 'numeric',
         month: '2-digit',
@@ -47,7 +46,10 @@ function FixturesPage() {
 
       return (
         <tr key={fixture.id}>
-          <td>{league}</td>
+          <td>
+            <img src={fixture.competition.emblem} alt={`${competition} Crest`} />
+            {league}
+          </td>
           <td>
             <img src={fixture.homeTeam.crest} alt={`${homeTeam} Crest`} />
             {homeTeam}
@@ -89,6 +91,8 @@ function FixturesPage() {
       "Primera Division",
       "Serie A",
       "Ligue 1",
+      "Primeira Liga",
+      "Eredivisie",
       "Campeonato Brasileiro Série A",
     ];
 
@@ -105,6 +109,10 @@ function FixturesPage() {
     if (fixturesData) {
       const headerText = "Upcoming Fixtures";
       const filteredFixtures = filterFixturesByLeague(fixturesData.matches);
+
+      if (filteredFixtures.length === 0) {
+        return <div>There is currently no matches scheduled!</div>; // Should there be no matches scheduled //
+      }
 
       return (
         <div>
@@ -174,6 +182,15 @@ function FixturesPage() {
                   </li>
                   <li>
                     <Link to="/standings?league=ligue1">Ligue 1</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=primeiraliga">Primeira Liga</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=eredivisie">Eredivisie</Link>
+                  </li>
+                  <li>
+                    <Link to="/standings?league=campeonatobrasileiroseriea">Campeonato Brasileiro Série A</Link>
                   </li>
                 </ul>
               </li>
