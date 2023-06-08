@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function FixturesPage() {
   const [fixturesData, setFixturesData] = useState(null);
-  const [selectedLeague, setSelectedLeague] = useState("all");
+  const [selectedLeague, setSelectedLeague] = useState("All Competitions");
 
   useEffect(() => {
     loadFixtures();
@@ -37,11 +37,16 @@ function FixturesPage() {
       });
       
       const [date, time] = dateTime.split(',');
+      const splitdate = date.split("/");
+      const newDate = splitdate[1] + "/" + splitdate[0] + "/" + splitdate[2];
 
       const score =
         fixture.status === "FINISHED"
           ? `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
-          : "-";
+          : <div>
+            Match Scheduled <br />
+            To Start
+            </div>
       const league = fixture.competition.name;
 
       return (
@@ -60,7 +65,7 @@ function FixturesPage() {
           </td>
           <td>
             <div>
-              <div>{date}</div>
+              <div>{newDate}</div>
               <div>{time}</div>
             </div>
           </td>
@@ -75,7 +80,7 @@ function FixturesPage() {
   };
 
   const filterFixturesByLeague = (fixtures) => {
-    if (selectedLeague === "all") {
+    if (selectedLeague === "All Competitions") {
       return fixtures;
     }
     return fixtures.filter(
@@ -85,7 +90,7 @@ function FixturesPage() {
 
   const renderLeagueOptions = () => {
     const leagues = [
-      "All Leagues",
+      "All Competitions",
       "Premier League",
       "Bundesliga",
       "Primera Division",
@@ -94,6 +99,7 @@ function FixturesPage() {
       "Primeira Liga",
       "Eredivisie",
       "Campeonato Brasileiro Série A",
+      "Copa Libertadores"
     ];
 
     return leagues.map((league) => {
@@ -106,44 +112,47 @@ function FixturesPage() {
   };
 
   const renderTable = () => {
-    if (fixturesData) {
-      const headerText = "Upcoming Fixtures";
-      const filteredFixtures = filterFixturesByLeague(fixturesData.matches);
-
-      if (filteredFixtures.length === 0) {
-        return <div>There is currently no matches scheduled!</div>; // Should there be no matches scheduled //
-      }
-
-      return (
-        <div>
-          <div className="league-filter">
-            <label htmlFor="league-select">Filter by league: </label>
-            <select
-              id="league-select"
-              value={selectedLeague}
-              onChange={handleLeagueChange}
-            >
-              {renderLeagueOptions()}
-            </select>
-          </div>
-          <h2 className="fixtures-table">{headerText}</h2>
-          <table id="fixtures-table">
-            <thead>
-              <tr className="table-header-row">
-                <th>League</th>
-                <th>Home Team</th>
-                <th>Away Team</th>
-                <th>Date & Time</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>{createFixtureRows(filteredFixtures)}</tbody>
-          </table>
+    const headerText = "Upcoming Fixtures";
+    const filteredFixtures = filterFixturesByLeague(fixturesData ? fixturesData.matches : []);
+  
+    return (
+      <div>
+        <div className="league-filter">
+          <label htmlFor="league-select">Filter by competition: </label>
+          <select
+            id="league-select"
+            value={selectedLeague}
+            onChange={handleLeagueChange}
+          >
+            {renderLeagueOptions()}
+          </select>
         </div>
-      );
-    }
-    return null;
+        <h2 className="fixtures-table">{headerText}</h2>
+        {fixturesData ? (
+          filteredFixtures.length === 0 ? (
+            <div>There are currently no matches scheduled!</div>
+          ) : (
+            <table id="fixtures-table">
+              <thead>
+                <tr className="table-header-row">
+                  <th>Competition</th>
+                  <th>Home Team</th>
+                  <th>Away Team</th>
+                  <th>Date & Time</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>{createFixtureRows(filteredFixtures)}</tbody>
+            </table>
+          )
+        ) : (
+          <div>Loading fixtures...</div>
+        )}
+      </div>
+    );
   };
+  
+  
 
   return (
     <div className="fixtures-container">
