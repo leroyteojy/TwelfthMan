@@ -10,6 +10,7 @@ function PredictionsPage() {
         <div className="container">
           <nav>
             <img src={TwelfthManLogo} alt="TwelfthManLogo" />
+            <h2>Under Development!</h2>
             <ul>
               <li>
                 <Link to="/">Home</Link>

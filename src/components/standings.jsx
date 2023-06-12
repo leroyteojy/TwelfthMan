@@ -8,6 +8,7 @@ function StandingsPage() {
   const location = useLocation();
   const [league, setLeague] = useState("pl");
   const [standingsData, setStandingsData] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -20,14 +21,19 @@ function StandingsPage() {
   }, [location.search]);
 
   const loadStandings = (league) => {
-    fetch(`https://damp-bayou-37411.herokuapp.com/standings?league=${league}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setStandingsData(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    setLoading(true); // Set loading state to true
+    setTimeout(() => {
+      fetch(`https://damp-bayou-37411.herokuapp.com/standings?league=${league}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setStandingsData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setLoading(false);
+        });
+    }, 1000);
   };
 
   const createTableRows = (datas, league) => {
@@ -173,12 +179,15 @@ function StandingsPage() {
   };
 
   const renderTable = () => {
+    if (loading) {
+      return <div>Loading League Table...</div>; // Render loading state if still loading
+    };
+
     if (standingsData) {
       const leagueName = standingsData.competition.name;
       const seasonYear = standingsData.filters.season.slice(2);
       const seasonNumber = `${seasonYear}/${Number(seasonYear) + 1}`;
       const leagueEmblem = standingsData.competition.emblem;
-      const countryFlag = standingsData.area.flag;
       const headerText = (
         <div className="header-text">
           {leagueName === "Campeonato Brasileiro Série A" ? (
@@ -192,7 +201,7 @@ function StandingsPage() {
       
       let zoneLabels;
 
-      if (leagueName == "Campeonato Brasileiro Série A") {
+      if (leagueName === "Campeonato Brasileiro Série A") {
         zoneLabels = [
           { className: "copa-libertadores", description: "Copa Libertadores" },
           { className: "copa-sudamericana",description: "Copa Sudamericana" },
@@ -316,7 +325,7 @@ function StandingsPage() {
             </ul>
           </nav>
         </div>
-        <div class="center">{renderTable()}</div>
+        <div className="center">{renderTable()}</div>
       </div>
     </div>
   );
