@@ -8,8 +8,7 @@
     ],
     "rewrites": [
       {
-        "source": "/standings/**",
-        "function": "standings",
+        "source": "**",
         "destination": "/index.html"
       }
     ]
