@@ -14,15 +14,12 @@ function OpeningPage() {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-
-    // Clean up the timer on unmounting
     return () => clearTimeout(timer);
   }, []);
 
   const redirectToLeagueTable = (event) => {
     const selectedOption = event.target.value;
 
-    // Redirect to the corresponding league table page based on the selected option
     switch (selectedOption) {
       case "PL":
         navigate("/standings?league=pl");

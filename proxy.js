@@ -1,9 +1,8 @@
 const express = require("express");
 
 const app = express();
-const port = 8080; // Choose any available port number
+const port = 8080;
 
-// Add CORS headers
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -17,7 +16,6 @@ app.use("/standings", async (req, res) => {
   const league = req.query.league;
   let url = "";
 
-  // Check the league parameter and set the appropriate API endpoint
   if (league === "pl") {
     url = "http://api.football-data.org/v4/competitions/PL/standings";
   } else if (league === "bundesliga") {
@@ -36,7 +34,7 @@ app.use("/standings", async (req, res) => {
     url = "http://api.football-data.org/v4/competitions/DED/standings";
   } 
 
-  // Add more conditions for other leagues if needed
+
   const headers = {
     "X-Auth-Token": "da0d2ae1e2de4f098cc873f90083f408",
   };
