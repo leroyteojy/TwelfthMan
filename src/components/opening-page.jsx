@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./../opening-page.css";
 import TwelfthManLogo from "./../images/TwelfthManLogo.jpg";
 import OpeningVideo from "./../images/Opening video.mp4";
+import LoadingVideo from "./../images/Loading Video.mp4";
 
 function OpeningPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Simulate a loading delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    // Clean up the timer on unmounting
+    return () => clearTimeout(timer);
+  }, []);
 
   const redirectToLeagueTable = (event) => {
     const selectedOption = event.target.value;
@@ -41,6 +53,18 @@ function OpeningPage() {
         break;
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <p>Refreshing Your Page</p>
+        <video className="loading-video" autoPlay muted loop>
+          <source src={LoadingVideo} type="video/mp4" />
+        </video>
+        <div className="loading-spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <>

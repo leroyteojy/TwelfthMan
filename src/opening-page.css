@@ -126,3 +126,47 @@ nav a:hover {
 #tableoptions {
   color: black;
 }
+
+/*--------------------------------------------------------------------------------------------------------------------------------
+                                                      Loading Page
+----------------------------------------------------------------------------------------------------------------------------------*/
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: xx-large;
+  font-weight: bolder;
+  font-family: "Poppins", sans-serif;
+}
+
+.loading-spinner {
+  width: 80px;
+  height: 80px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid grey;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  position:relative;
+} 
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
