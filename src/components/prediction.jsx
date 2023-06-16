@@ -14,6 +14,7 @@ function PredictionsPage() {
   const [homeTeam, setHomeTeam] = useState("");
   const [awayTeam, setAwayTeam] = useState("");
   const [selectedLeague, setSelectedLeague] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const leagueOptions = [
     { name: "Premier League", csvFile: PremierLeagueData },
@@ -31,9 +32,8 @@ function PredictionsPage() {
         complete: function (results) {
           const teamsData = results.data;
           const uniqueTeamNames = getUniqueTeamNames(teamsData);
-          console.log(uniqueTeamNames);
           setTeamNames(uniqueTeamNames);
-          }
+        }
       });
     }
   }, [selectedLeague]);
@@ -63,6 +63,17 @@ function PredictionsPage() {
     const selectedLeague = event.target.value;
     setSelectedLeague(selectedLeague);
   }
+
+  const handleConfirmClick = () => {
+    if (homeTeam && awayTeam) {
+      setIsLoading(true); 
+      setTimeout(() => {
+        setIsLoading(false); 
+        const chosenTeams = [homeTeam, awayTeam];
+        console.log(chosenTeams) ///////////// To display the teams chosen /////////////////////
+      }, 2000);
+    }
+  };
 
   return (
     <div className="predictions-container">
@@ -119,8 +130,8 @@ function PredictionsPage() {
           </nav>
         </div>
 
-          <div className="predictions-content">
-          <h2>Match Predictor</h2> {/* Add the heading "Match Predictor" */}
+        <div className="predictions-content">
+          <h2>Match Predictor</h2>
           <div className="league-select">
             <h3>Select League:</h3>
             <select value={selectedLeague} onChange={handleLeagueChange}>
@@ -133,7 +144,7 @@ function PredictionsPage() {
                 </option>
               ))}
             </select>
-            </div>
+          </div>
           <div className="team-select">
             <div>
               <h3>Select Home Team:</h3>
@@ -170,6 +181,12 @@ function PredictionsPage() {
               </select>
             </div>
           </div>
+          <button onClick={handleConfirmClick}>Confirm Selections</button>
+          {isLoading && (
+            <div className="loading-circle">
+              Processing...    
+            </div>
+          )}
         </div>
       </div>
     </div>
