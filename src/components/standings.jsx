@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./../league-table.css";
 import TwelfthManLogo from "./../images/TwelfthManLogo.jpg";
-import Campeonato_Brasileiro_Serie_A_logo from ".//..//images//Campeonato_Brasileiro_Serie_A_logo.webp"
+import Campeonato_Brasileiro_Serie_A_logo from ".//..//images//Campeonato_Brasileiro_Serie_A_logo.webp";
 import { Link, useLocation } from "react-router-dom";
 
 function StandingsPage() {
@@ -9,6 +9,7 @@ function StandingsPage() {
   const [league, setLeague] = useState("pl");
   const [standingsData, setStandingsData] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
+  const [selectedSeason, setSelectedSeason] = useState("");
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -16,14 +17,16 @@ function StandingsPage() {
 
     if (leagueParam) {
       setLeague(leagueParam);
-      loadStandings(leagueParam);
+      loadStandings(leagueParam, selectedSeason);
     }
   }, [location.search]);
 
-  const loadStandings = (league) => {
-    setLoading(true); 
+  const loadStandings = (league, season) => {
+    setLoading(true);
     setTimeout(() => {
-      fetch(`https://damp-bayou-37411.herokuapp.com/standings?league=${league}`)
+      fetch(
+        `https://damp-bayou-37411.herokuapp.com//standings?league=${league}&season=${season}`
+      )
         .then((response) => response.json())
         .then((data) => {
           setStandingsData(data);
@@ -178,11 +181,43 @@ function StandingsPage() {
     return label;
   };
 
+  const renderSeasonDropdown = () => {
+    const seasons = ["2020", "2021", "2022", "2023"]; // Replace with your desired list of seasons
+
+    const handleSeasonChange = (event) => {
+      const selectedSeason = event.target.value;
+      setSelectedSeason(selectedSeason);
+      loadStandings(league, selectedSeason); // Use selectedSeason state variable
+    };
+    return (
+      <div className="season-dropdown">
+        <select value={selectedSeason} onChange={handleSeasonChange}>
+          <option value="">Select Season</option>
+          {seasons.map((season) => (
+            <option value={season} key={season}>
+              {season}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  };
   const renderTable = () => {
     if (loading) {
       return <div>Loading League Table...</div>; // Render loading state if still loading
-    };
-
+    }
+    if (
+      !standingsData ||
+      !standingsData.competition ||
+      !standingsData.filters
+    ) {
+      return (
+        <div>
+          <div>Season data not available yet, choose another season!</div>
+          {renderSeasonDropdown()}
+        </div>
+      );
+    }
     if (standingsData) {
       const leagueName = standingsData.competition.name;
       const seasonYear = standingsData.filters.season.slice(2);
@@ -191,23 +226,35 @@ function StandingsPage() {
       const headerText = (
         <div className="header-text">
           {leagueName === "Campeonato Brasileiro Série A" ? (
-            <img src={Campeonato_Brasileiro_Serie_A_logo} alt={`${leagueName} Emblem`} className="league-emblem" />
-              ) : (
-            <img src={leagueEmblem} alt={`${leagueName} Emblem`} className="league-emblem" />
+            <img
+              src={Campeonato_Brasileiro_Serie_A_logo}
+              alt={`${leagueName} Emblem`}
+              className="league-emblem"
+            />
+          ) : (
+            <img
+              src={leagueEmblem}
+              alt={`${leagueName} Emblem`}
+              className="league-emblem"
+            />
           )}
           <span>Season {seasonNumber} Standings</span>
+          {renderSeasonDropdown()}
         </div>
       );
-      
+
       let zoneLabels;
 
       if (leagueName === "Campeonato Brasileiro Série A") {
         zoneLabels = [
           { className: "copa-libertadores", description: "Copa Libertadores" },
-          { className: "copa-sudamericana",description: "Copa Sudamericana" },
-          { className: "copa-libertadores-qual", description: "Copa Libertadores Qualification" },
+          { className: "copa-sudamericana", description: "Copa Sudamericana" },
+          {
+            className: "copa-libertadores-qual",
+            description: "Copa Libertadores Qualification",
+          },
           { className: "relegation", description: "Relegation" },
-        ]; 
+        ];
       } else {
         zoneLabels = [
           { className: "champions-league", description: "Champions League" },
@@ -230,7 +277,7 @@ function StandingsPage() {
           },
           { className: "relegation", description: "Relegation" },
         ];
-      } 
+      }
 
       return (
         <div>
@@ -312,13 +359,17 @@ function StandingsPage() {
                     <Link to="/standings?league=ligue1">Ligue 1</Link>
                   </li>
                   <li>
-                    <Link to="/standings?league=primeiraliga">Primeira Liga</Link>
+                    <Link to="/standings?league=primeiraliga">
+                      Primeira Liga
+                    </Link>
                   </li>
                   <li>
                     <Link to="/standings?league=eredivisie">Eredivisie</Link>
                   </li>
                   <li>
-                    <Link to="/standings?league=campeonatobrasileiroseriea">Campeonato Brasileiro Série A</Link>
+                    <Link to="/standings?league=campeonatobrasileiroseriea">
+                      Campeonato Brasileiro Série A
+                    </Link>
                   </li>
                 </ul>
               </li>

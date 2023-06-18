@@ -8,32 +8,26 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://twelfth-man-dbad2.web.app",
+    origin: "localhost:3000",
   })
 );
 
 app.use("/standings", async (req, res) => {
+  const leagues = {
+    pl: "PL",
+    bundesliga: "BL1",
+    primeradivision: "PD",
+    seriea: "SA",
+    ligue1: "FL1",
+    campeonatobrasileiroseriea: "BSA",
+    primeiraliga: "PPL",
+    eredivisie: "DED",
+  };
+
   const league = req.query.league;
-  let url = "";
-
-  if (league === "pl") {
-    url = "http://api.football-data.org/v4/competitions/PL/standings";
-  } else if (league === "bundesliga") {
-    url = "http://api.football-data.org/v4/competitions/BL1/standings";
-  } else if (league === "primeradivision") {
-    url = "http://api.football-data.org/v4/competitions/PD/standings";
-  } else if (league === "seriea") {
-    url = "http://api.football-data.org/v4/competitions/SA/standings";
-  } else if (league === "ligue1") {
-    url = "http://api.football-data.org/v4/competitions/FL1/standings";
-  } else if (league === "campeonatobrasileiroseriea") {
-    url = "http://api.football-data.org/v4/competitions/BSA/standings";
-  } else if (league === "primeiraliga") {
-    url = "http://api.football-data.org/v4/competitions/PPL/standings";
-  } else if (league === "eredivisie") {
-    url = "http://api.football-data.org/v4/competitions/DED/standings";
-  }
-
+  const season = req.query.season || "2022";
+  console.log(season);
+  const url = `http://api.football-data.org/v4/competitions/${leagues[league]}/standings?season=${season}`;
   const headers = {
     "X-Auth-Token": "da0d2ae1e2de4f098cc873f90083f408",
   };
