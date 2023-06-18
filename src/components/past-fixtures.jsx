@@ -102,8 +102,10 @@ function PastFixtures() {
           onChange={handleSeasonChange}
         >
           {seasons.map((season) => (
-            <option key={season}>{season}</option>
-          ))}
+              <option key={season} value={season}>
+                {season}/{Number(season) + 1}
+              </option>
+            ))}
         </select>
       </div>
 
@@ -120,7 +122,7 @@ function PastFixtures() {
             </option>
           ))}
         </select>
-      </div>
+      </div >
 
       <table id="past-fixtures-table">
         <thead>

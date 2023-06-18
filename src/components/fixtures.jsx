@@ -13,7 +13,7 @@ function FixturesPage() {
   }, []);
 
   const loadFixtures = () => {
-    fetch("http://localhost:8080/fixtures")
+    fetch("https://damp-bayou-37411.herokuapp.com/fixtures")
       .then((response) => response.json())
       .then((data) => {
         setFixturesData(data);
@@ -218,6 +218,7 @@ function FixturesPage() {
         </div>
         <div className="center">
           <div className="table-container">{renderTable()}</div>
+          <div className="section-divider"></div>
           <PastFixtures />
         </div>
       </div>
