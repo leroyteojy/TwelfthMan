@@ -24,7 +24,7 @@ function PastFixtures() {
   useEffect(() => {
     const fetchPastFixtures = async () => {
       const response = await fetch(
-        `http://localhost:8080/past-fixtures?league=${league}&season=${season}`
+        `https://damp-bayou-37411.herokuapp.com/past-fixtures?league=${league}&season=${season}`
       );
       const data = await response.json();
       setPastFixtures(data.matches);
