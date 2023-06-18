@@ -211,7 +211,8 @@
 .header-text {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align content to the left */
+  justify-content: flex-start; 
+  font-size: x-large;
 }
 
 .league-emblem {
@@ -224,3 +225,4 @@
   height: 10px;
   width: 10px;
 }
+

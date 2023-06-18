@@ -25,7 +25,7 @@ function StandingsPage() {
     setLoading(true);
     setTimeout(() => {
       fetch(
-        `https://damp-bayou-37411.herokuapp.com//standings?league=${league}&season=${season}`
+        `https://damp-bayou-37411.herokuapp.com/standings?league=${league}&season=${season}`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -191,17 +191,18 @@ function StandingsPage() {
     };
     return (
       <div className="season-dropdown">
-        <select value={selectedSeason} onChange={handleSeasonChange}>
+        <select value={selectedSeason} onChange={handleSeasonChange} style={{ fontSize: '22px'}}>
           <option value="">Select Season</option>
-          {seasons.map((season) => (
+          {seasons.map((season, index) => (
             <option value={season} key={season}>
-              {season}
+              {season}/{parseInt(season) + 1}
             </option>
           ))}
         </select>
       </div>
     );
   };
+
   const renderTable = () => {
     if (loading) {
       return <div>Loading League Table...</div>; // Render loading state if still loading
@@ -213,10 +214,13 @@ function StandingsPage() {
     ) {
       return (
         <div>
-          <div>Season data not available yet, choose another season!</div>
+          <div style={{ fontSize: '24px', textAlign: 'center' }}>
+          Season data not available yet! <br/><br/>
+          Choose another season!</div>
+          <br></br>
           {renderSeasonDropdown()}
         </div>
-      );
+      );      
     }
     if (standingsData) {
       const leagueName = standingsData.competition.name;
@@ -238,7 +242,7 @@ function StandingsPage() {
               className="league-emblem"
             />
           )}
-          <span>Season {seasonNumber} Standings</span>
+          <span>Season {seasonNumber} Standings&nbsp;&nbsp;&nbsp;</span>
           {renderSeasonDropdown()}
         </div>
       );
