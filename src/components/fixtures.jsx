@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./../fixtures.css";
 import TwelfthManLogo from "./../images/TwelfthManLogo.jpg";
 import { Link } from "react-router-dom";
+import PastFixtures from "./past-fixtures";
 
 function FixturesPage() {
   const [fixturesData, setFixturesData] = useState(null);
@@ -12,7 +13,7 @@ function FixturesPage() {
   }, []);
 
   const loadFixtures = () => {
-    fetch("https://damp-bayou-37411.herokuapp.com/fixtures")
+    fetch("http://localhost:8080/fixtures")
       .then((response) => response.json())
       .then((data) => {
         setFixturesData(data);
@@ -27,32 +28,37 @@ function FixturesPage() {
       const homeTeam = fixture.homeTeam.name;
       const awayTeam = fixture.awayTeam.name;
       const competition = fixture.competition;
-      const dateTime = new Date(fixture.utcDate).toLocaleString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
+      const dateTime = new Date(fixture.utcDate).toLocaleString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
         hour12: false,
       });
-      
-      const [date, time] = dateTime.split(',');
+
+      const [date, time] = dateTime.split(",");
       const splitdate = date.split("/");
       const newDate = splitdate[1] + "/" + splitdate[0] + "/" + splitdate[2];
 
       const score =
-        fixture.status === "FINISHED"
-          ? `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
-          : <div>
+        fixture.status === "FINISHED" ? (
+          `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
+        ) : (
+          <div>
             Match Scheduled <br />
             To Start
-            </div>
+          </div>
+        );
       const league = fixture.competition.name;
 
       return (
         <tr key={fixture.id}>
           <td>
-            <img src={fixture.competition.emblem} alt={`${competition} Crest`} />
+            <img
+              src={fixture.competition.emblem}
+              alt={`${competition} Crest`}
+            />
             {league}
           </td>
           <td>
@@ -99,7 +105,7 @@ function FixturesPage() {
       "Primeira Liga",
       "Eredivisie",
       "Campeonato Brasileiro Série A",
-      "Copa Libertadores"
+      "Copa Libertadores",
     ];
 
     return leagues.map((league) => {
@@ -113,8 +119,10 @@ function FixturesPage() {
 
   const renderTable = () => {
     const headerText = "Upcoming Fixtures";
-    const filteredFixtures = filterFixturesByLeague(fixturesData ? fixturesData.matches : []);
-  
+    const filteredFixtures = filterFixturesByLeague(
+      fixturesData ? fixturesData.matches : []
+    );
+
     return (
       <div>
         <div className="league-filter">
@@ -151,8 +159,6 @@ function FixturesPage() {
       </div>
     );
   };
-  
-  
 
   return (
     <div className="fixtures-container">
@@ -193,13 +199,17 @@ function FixturesPage() {
                     <Link to="/standings?league=ligue1">Ligue 1</Link>
                   </li>
                   <li>
-                    <Link to="/standings?league=primeiraliga">Primeira Liga</Link>
+                    <Link to="/standings?league=primeiraliga">
+                      Primeira Liga
+                    </Link>
                   </li>
                   <li>
                     <Link to="/standings?league=eredivisie">Eredivisie</Link>
                   </li>
                   <li>
-                    <Link to="/standings?league=campeonatobrasileiroseriea">Campeonato Brasileiro Série A</Link>
+                    <Link to="/standings?league=campeonatobrasileiroseriea">
+                      Campeonato Brasileiro Série A
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -207,9 +217,8 @@ function FixturesPage() {
           </nav>
         </div>
         <div className="center">
-          <div className="table-container">
-            {renderTable()}
-          </div>
+          <div className="table-container">{renderTable()}</div>
+          <PastFixtures />
         </div>
       </div>
     </div>
