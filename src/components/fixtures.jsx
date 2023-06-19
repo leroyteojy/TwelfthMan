@@ -24,6 +24,7 @@ function FixturesPage() {
   };
 
   const createFixtureRows = (fixtures) => {
+  
     return fixtures.map((fixture) => {
       const homeTeam = fixture.homeTeam.name;
       const awayTeam = fixture.awayTeam.name;
@@ -34,7 +35,6 @@ function FixturesPage() {
         day: "2-digit",
         hour: "2-digit",
         minute: "2-digit",
-        hour12: false,
       });
 
       const [date, time] = dateTime.split(",");
@@ -43,11 +43,10 @@ function FixturesPage() {
 
       const score =
         fixture.status === "FINISHED" ? (
-          `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
-        ) : (
+          `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`) : (
           <div>
             Match Scheduled <br />
-            To Start
+            To Begin
           </div>
         );
       const league = fixture.competition.name;
@@ -72,6 +71,7 @@ function FixturesPage() {
           <td>
             <div>
               <div>{newDate}</div>
+              <br></br>
               <div>{time}</div>
             </div>
           </td>

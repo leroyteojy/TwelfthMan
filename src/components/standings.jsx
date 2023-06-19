@@ -19,7 +19,7 @@ function StandingsPage() {
       setLeague(leagueParam);
       loadStandings(leagueParam, selectedSeason);
     }
-  }, [location.search]);
+  }, [location.search, selectedSeason]);
 
   const loadStandings = (league, season) => {
     setLoading(true);
@@ -205,7 +205,7 @@ function StandingsPage() {
 
   const renderTable = () => {
     if (loading) {
-      return <div>Loading League Table...</div>; // Render loading state if still loading
+      return <div className="spinner"></div>; // Render loading state if still loading
     }
     if (
       !standingsData ||
