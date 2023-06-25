@@ -132,9 +132,23 @@
 }
 
 
-.fixtures-table {
-  width: 100%;
-  border-collapse: collapse;
+#fixtures-table {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 50px;
+}
+
+#fixtures-table th,
+#fixtures-table td {
+  font-size: 20px; /* Increase the font size */
+  text-align: center; /* Center-align the content */
+}
+
+#fixtures-table td img {
+  display: block;
+  margin: 0 auto;
+  width: 30px; /* Adjust the width of the team crest */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .table-header-row th {
@@ -163,17 +177,24 @@ td img {
   margin-right: 8px;
 }
 
-.dropdown-container {
+.dropdown-container1 {
+  margin-top: 20px;
+}
+
+.dropdown-container2 {
+  margin-top: 20px;
   margin-bottom: 25px;
 }
 
-.dropdown-container label {
+.dropdown-container1 label 
+.dropdown-container2 label {
   display: block;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
-.dropdown-container select {
+.dropdown-container1 select
+.dropdown-container2 select {
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;

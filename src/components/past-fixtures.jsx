@@ -116,7 +116,7 @@ function PastFixtures() {
     <div>
       <h2 className="fixtures-table">Past Fixtures</h2>
 
-      <div className="dropdown-container">
+      <div className="dropdown-container1">
         <label htmlFor="season-dropdown">Select Season:</label>
         <select
           id="season-dropdown"
@@ -131,7 +131,7 @@ function PastFixtures() {
         </select>
       </div>
 
-      <div className="dropdown-container">
+      <div className="dropdown-container2">
         <label htmlFor="league-dropdown">Select League:</label>
         <select
           id="league-dropdown"
