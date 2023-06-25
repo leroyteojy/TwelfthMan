@@ -68,7 +68,10 @@ function PastFixtures() {
       const newDate = splitdate[1] + "/" + splitdate[0] + "/" + splitdate[2];
       const score =
         fixture.status === "FINISHED" ? (
-          `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`) : (<div> Match Scheduled </div>);
+          `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
+        ) : (
+          <div> Match Scheduled </div>
+        );
       const league = fixture.competition.name;
 
       return (
@@ -112,7 +115,7 @@ function PastFixtures() {
   return (
     <div>
       <h2 className="fixtures-table">Past Fixtures</h2>
-  
+
       <div className="dropdown-container">
         <label htmlFor="season-dropdown">Select Season:</label>
         <select
@@ -127,7 +130,7 @@ function PastFixtures() {
           ))}
         </select>
       </div>
-  
+
       <div className="dropdown-container">
         <label htmlFor="league-dropdown">Select League:</label>
         <select
@@ -142,7 +145,7 @@ function PastFixtures() {
           ))}
         </select>
       </div>
-  
+
       {isLoading ? (
         <div className="spinner"></div>
       ) : (
@@ -154,7 +157,7 @@ function PastFixtures() {
                   <th>Competition</th>
                   <th>Home Team</th>
                   <th>Away Team</th>
-                  <th>Date & Time</th>
+                  <th>Date & Time (GMT+8)</th>
                   <th>Score</th>
                 </tr>
               </thead>
