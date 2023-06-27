@@ -38,6 +38,7 @@ function StandingsPage() {
         });
     }, 1000);
   };
+  
 
   const createTableRows = (datas, league) => {
     return datas.map((teamData) => {
