@@ -285,40 +285,54 @@ function StandingsPage() {
 
       return (
         <div>
-          <h2 className="league-table">{headerText}</h2>
-          <table id="standings-table">
-            <thead>
-              <tr>
-                <th>Position</th>
-                <th>Team</th>
-                <th>Played</th>
-                <th>Wins</th>
-                <th>Draws</th>
-                <th>Losses</th>
-                <th>GF</th>
-                <th>GA</th>
-                <th>GD</th>
-                <th>Points</th>
-              </tr>
-            </thead>
-            <tbody>
-              {createTableRows(standingsData.standings[0].table, league)}
-            </tbody>
-          </table>
-          <div id="zone-labels">
-            <ul>
-              {zoneLabels.map((label, index) => (
-                <li key={index}>
-                  <span
-                    className={`dot ${label.className}`}
-                    title={label.description}
-                  ></span>
-                  <span>{label.description}</span>
-                </li>
-              ))}
-            </ul>
+          
+          <div className="center">
+            <h2 className="league-table">{headerText}</h2>
+            <table id="standings-table">
+              <thead>
+                <tr>
+                  <th>Position</th>
+                  <th>Team</th>
+                  <th>Played</th>
+                  <th>Wins</th>
+                  <th>Draws</th>
+                  <th>Losses</th>
+                  <th>GF</th>
+                  <th>GA</th>
+                  <th>GD</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {createTableRows(standingsData.standings[0].table, league)}
+              </tbody>
+            </table>
           </div>
-        </div>
+
+          <div className="describe">
+            <h3>Description</h3>
+              <ul>
+                <li>GF &rarr; Goals For</li>
+                <li>GA &rarr; Goals Against</li>
+                <li>GD &rarr; Goal Difference</li>
+              </ul>
+            </div>
+
+          <div className="zone-labels">
+            <h3>Zone Labels</h3>
+              <ul>
+                {zoneLabels.map((label, index) => (
+                  <li key={index}>
+                    <span
+                      className={`dot ${label.className}`}
+                      title={label.description}
+                    ></span>
+                    <span>{label.description}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
       );
     }
     return null;
@@ -380,7 +394,7 @@ function StandingsPage() {
             </ul>
           </nav>
         </div>
-        <div className="center">{renderTable()}</div>
+        <div>{renderTable()}</div>
       </div>
     </div>
   );

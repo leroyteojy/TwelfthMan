@@ -51,7 +51,7 @@ function PastFixtures() {
         </tr>
       );
     }
-    return fixtures.map((fixture) => {
+    return fixtures.reverse().map((fixture) => {
       const homeTeam = fixture.homeTeam.name;
       const awayTeam = fixture.awayTeam.name;
       const competition = fixture.competition.name;

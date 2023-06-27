@@ -127,6 +127,50 @@
   margin-left: auto;
   margin-right: auto;
   width: 1000px;
+  overflow: hidden;
+}
+
+.league-table-container .zone-labels {
+  float: right;
+  margin-right: 5%;
+  margin-top: 150px;
+}
+
+.league-table-container .describe {
+  float: left;
+  margin-left: 5%;
+  margin-top: 150px;
+}
+
+.describe ul li {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.describe h3 {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background-color: rgb(174, 128, 13);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.zone-labels h3 {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 24px;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  background-color: rgb(174, 128, 13);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .league-table-container table {
@@ -136,7 +180,7 @@
 .league-table-container th,
 .league-table-container td {
   padding: 8px;
-  border: 1px solid black;
+  border: 2px solid black;
   text-align: center;
 }
 
@@ -149,16 +193,6 @@
   height: auto;
   margin-left: 10px;
   float: right;
-}
-
-.league-table-container .zones {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  text-align: center;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 20px;
 }
 
 .league-table-container .champions-league {
@@ -243,4 +277,3 @@
   height: 10px;
   width: 10px;
 }
-

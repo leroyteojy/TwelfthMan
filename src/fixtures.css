@@ -136,12 +136,14 @@
   margin: 0 auto;
   width: 80%;
   margin-top: 50px;
+  border-collapse: collapse;
 }
 
 #fixtures-table th,
 #fixtures-table td {
   font-size: 20px; /* Increase the font size */
   text-align: center; /* Center-align the content */
+  border: 1px solid black;
 }
 
 #fixtures-table td img {
@@ -152,11 +154,12 @@
 }
 
 .table-header-row th {
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #04d88b;
+  color: #020202;
   font-weight: bold;
   padding: 12px;
   text-align: center;
+  font-family: 'Pacifico', cursive;
 }
 
 tbody tr:nth-child(even) {
@@ -164,7 +167,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-  background-color: #e5e5e5;
+  background-color: #dafae9;
 }
 
 td {
@@ -209,26 +212,28 @@ h2.fixtures-table {
 #past-fixtures-table {
   margin: 0 auto;
   width: 80%;
+  border-collapse: collapse;
 }
 
 #past-fixtures-table th,
 #past-fixtures-table td {
-  font-size: 20px; /* Increase the font size */
-  text-align: center; /* Center-align the content */
+  font-size: 20px; 
+  text-align: center;
+  border: 2px solid black;
 }
 
 #past-fixtures-table td img {
   display: block;
   margin: 0 auto;
-  width: 30px; /* Adjust the width of the team crest */
-  height: auto; /* Maintain aspect ratio */
+  width: 30px;
+  height: auto; 
 }
 
 .section-divider {
   margin-top: 20px;
   width: 100%;
   height: 50px;
-  background-color: #f2f2f2; /* Replace with your desired background color */
+  background-color: #f2f2f2; 
   background-image: repeating-linear-gradient(
     -45deg,
     transparent,

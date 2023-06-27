@@ -1,3 +1,12 @@
+.predictions-container {
+  background-color: #000000;
+  background-image: linear-gradient(to bottom, #3a3a31, #6f613c);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100%;
+}
+
 /* Header */
 #header {
   width: 100%;
@@ -117,7 +126,7 @@
   width: 600px; /* Increase the width for a longer box */
   height: 500px;
   background-color: #f9f9f9;
-  border: 4px solid goldenrod;
+  border: 6px solid rgb(165, 128, 36);
   border-radius: 10px; /* Increase the border radius for a more rounded appearance */
   padding: 20px; /* Adjust the padding for a better spacing */
   margin: 0 auto;
