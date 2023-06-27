@@ -154,7 +154,7 @@ function FixturesPage() {
             </table>
           )
         ) : (
-          <div>Loading fixtures...</div>
+          <div className="spinner"></div>
         )}
       </div>
     );
