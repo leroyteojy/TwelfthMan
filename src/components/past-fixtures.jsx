@@ -5,6 +5,7 @@ function PastFixtures() {
   const [season, setSeason] = useState("2022");
   const [league, setLeague] = useState("pl");
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedTeam, setSelectedTeam] = useState("");
 
   const seasons = ["2021", "2022", "2023"];
 
@@ -14,8 +15,6 @@ function PastFixtures() {
     { name: "Bundesliga", code: "bundesliga" },
     { name: "Serie A", code: "seriea" },
     { name: "Ligue 1", code: "ligue1" },
-    { name: "Primeira Liga", code: "premeiraliga" },
-    { name: "Eredivisie", code: "eredivise" },
     {
       name: "Campeonato Brasileiro Série A",
       code: "campeonatobrasileiroseriea",
@@ -51,7 +50,16 @@ function PastFixtures() {
         </tr>
       );
     }
-    return fixtures.reverse().map((fixture) => {
+
+    const filteredFixtures = selectedTeam
+      ? fixtures.filter(
+          (fixture) =>
+            fixture.homeTeam.name.includes(selectedTeam) ||
+            fixture.awayTeam.name.includes(selectedTeam)
+        )
+      : fixtures;
+
+    return filteredFixtures.reverse().map((fixture) => {
       const homeTeam = fixture.homeTeam.name;
       const awayTeam = fixture.awayTeam.name;
       const competition = fixture.competition.name;
@@ -65,7 +73,8 @@ function PastFixtures() {
 
       const [date, time] = dateTime.split(",");
       const splitdate = date.split("/");
-      const newDate = splitdate[1] + "/" + splitdate[0] + "/" + splitdate[2];
+      const newDate =
+        splitdate[1] + "/" + splitdate[0] + "/" + splitdate[2];
       const score =
         fixture.status === "FINISHED" ? (
           `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
@@ -74,6 +83,10 @@ function PastFixtures() {
         );
       const league = fixture.competition.name;
 
+      if (fixture.status !== "FINISHED") {
+        return null;
+      }
+      
       return (
         <tr key={fixture.id}>
           <td>
@@ -146,6 +159,24 @@ function PastFixtures() {
         </select>
       </div>
 
+      <div className="dropdown-container3">
+        <label htmlFor="team-dropdown">Select Team:</label>
+        <select
+          id="team-dropdown"
+          value={selectedTeam}
+          onChange={(event) => setSelectedTeam(event.target.value)}
+        >
+          <option value="">All Teams</option>
+          {[...new Set(pastFixtures.map((fixture) => fixture.homeTeam.name))]
+            .sort((a, b) => a.localeCompare(b))
+            .map((teamName) => (
+              <option key={teamName} value={teamName}>
+                {teamName}
+              </option>
+            ))}
+        </select>
+      </div>
+
       {isLoading ? (
         <div className="spinner"></div>
       ) : (
@@ -173,3 +204,4 @@ function PastFixtures() {
 }
 
 export default PastFixtures;
+

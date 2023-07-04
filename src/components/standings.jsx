@@ -193,7 +193,7 @@ function StandingsPage() {
     return (
       <div className="season-dropdown">
         <select value={selectedSeason} onChange={handleSeasonChange} style={{ fontSize: '22px'}}>
-          <option value="">Select Season</option>
+          <option value="" selected disabled>Select Season</option>
           {seasons.map((season, index) => (
             <option value={season} key={season}>
               {season}/{parseInt(season) + 1}
