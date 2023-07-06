@@ -267,3 +267,30 @@ h2.fixtures-table {
     transform: rotate(360deg);
   }
 }
+
+.match-details-popup {
+  position: fixed;
+  top: 70%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  font-size:medium;
+}
+
+.match-details-popup h3 {
+  margin-top: 0;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size:x-large;
+  color: #000000;
+  padding: 8px;
+  border-bottom: 1px solid #adadad;
+}
+
+.match-details-popup p {
+  margin-bottom: 10px;
+}
+

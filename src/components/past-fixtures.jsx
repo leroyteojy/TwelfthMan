@@ -6,6 +6,7 @@ function PastFixtures() {
   const [league, setLeague] = useState("pl");
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTeam, setSelectedTeam] = useState("");
+  const [selectedMatch, setSelectedMatch] = useState(null);
 
   const seasons = ["2021", "2022", "2023"];
 
@@ -28,7 +29,7 @@ function PastFixtures() {
         `https://damp-bayou-37411.herokuapp.com/past-fixtures?league=${league}&season=${season}`
       );
       const data = await response.json();
-      setPastFixtures(data.matches);
+      setPastFixtures(data.matches.reverse());
       setIsLoading(false);
     };
     fetchPastFixtures();
@@ -51,7 +52,7 @@ function PastFixtures() {
       );
     }
 
-    const filteredFixtures = selectedTeam
+    let filteredFixtures = selectedTeam
       ? fixtures.filter(
           (fixture) =>
             fixture.homeTeam.name.includes(selectedTeam) ||
@@ -59,7 +60,7 @@ function PastFixtures() {
         )
       : fixtures;
 
-    return filteredFixtures.reverse().map((fixture) => {
+    return filteredFixtures.map((fixture) => {
       const homeTeam = fixture.homeTeam.name;
       const awayTeam = fixture.awayTeam.name;
       const competition = fixture.competition.name;
@@ -73,8 +74,7 @@ function PastFixtures() {
 
       const [date, time] = dateTime.split(",");
       const splitdate = date.split("/");
-      const newDate =
-        splitdate[1] + "/" + splitdate[0] + "/" + splitdate[2];
+      const newDate = splitdate[1] + "/" + splitdate[0] + "/" + splitdate[2];
       const score =
         fixture.status === "FINISHED" ? (
           `${fixture.score.fullTime.home} - ${fixture.score.fullTime.away}`
@@ -86,16 +86,16 @@ function PastFixtures() {
       if (fixture.status !== "FINISHED") {
         return null;
       }
-      
+
       return (
-        <tr key={fixture.id}>
+        <tr key={fixture.id} onMouseEnter={() => setSelectedMatch(fixture)} onMouseLeave={() => setSelectedMatch(null)}>
           <td>
             <img
               src={fixture.competition.emblem}
               alt={`${competition} Crest`}
               style={{ width: "50px", height: "50px" }}
             />
-            {league}
+           {league}
           </td>
           <td>
             <img src={fixture.homeTeam.crest} alt={`${homeTeam} Crest`} />
@@ -124,6 +124,31 @@ function PastFixtures() {
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  function MatchDetailsPopup({ match, onClose }) {
+    console.log(match);
+    if (!match) {
+      return null;
+    }
+
+    return (
+      <div className="match-details-popup">
+        <h3>MATCH DETAILS</h3>
+        <p>Competition: {match.competition.name}
+              <img
+              src={match.area.flag}
+              alt={`${match.area} Flag`}
+              style={{ width: "30px", height: "20px", float: "right"}}></img>
+        </p>
+        <p>Matchday: {match.matchday}</p>
+        <p>Referee: {match.referees[0].name}</p>
+        <p>Home : {match.homeTeam.tla}</p>
+        <p>Away : {match.awayTeam.tla}</p>
+        <p>FT : {match.score.fullTime.home} - {match.score.fullTime.away}</p>
+        <p>HT : {match.score.halfTime.home} - {match.score.halfTime.away}</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -195,7 +220,13 @@ function PastFixtures() {
               <tbody>{createFixtureRows(pastFixtures)}</tbody>
             </table>
           ) : (
-            <p>Oops! There are currently no fixtures available</p>
+           <p>Oops! There are currently no fixtures available</p>
+          )}
+          {selectedMatch && (
+            <MatchDetailsPopup
+              match={selectedMatch}
+              onClose={() => setSelectedMatch(null)}
+            />
           )}
         </>
       )}
@@ -204,4 +235,3 @@ function PastFixtures() {
 }
 
 export default PastFixtures;
-
