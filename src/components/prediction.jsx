@@ -7,7 +7,7 @@ import PremierLeagueData from "./../CSV/PLData.csv";
 import BundesligaData from "./../CSV/BL1Data.csv";
 import SerieAData from "./../CSV/SAData.csv";
 import PrimeraDivisionData from "./../CSV/PPLData.csv";
-import Ligue1 from "./../CSV/FL1Data.csv";
+import Ligue1Data from "./../CSV/FL1Data.csv";
 
 function PredictionsPage() {
   const [teamNames, setTeamNames] = useState([]);
@@ -21,7 +21,7 @@ function PredictionsPage() {
     { name: "Bundesliga", csvFile: BundesligaData },
     { name: "Serie A", csvFile: SerieAData },
     { name: "Primera Division", csvFile: PrimeraDivisionData },
-    { name: "Ligue 1", csvFile: Ligue1 },
+    { name: "Ligue 1", csvFile: Ligue1Data },
   ];
 
   useEffect(() => {
