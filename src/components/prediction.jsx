@@ -214,7 +214,7 @@ function PredictionsPage() {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="kickoff-time-input">Kickoff Time:</label>
+            <label htmlFor="kickoff-time-input">Kickoff Time : </label>
             <input
               type="time"
               className="form-control"
@@ -223,7 +223,7 @@ function PredictionsPage() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="kickoff-date-input">Kickoff Date:</label>
+            <label htmlFor="kickoff-date-input">Kickoff Date :  </label>
             <input
               type="date"
               className="form-control"
