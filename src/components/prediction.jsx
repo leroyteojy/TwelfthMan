@@ -14,7 +14,10 @@ function PredictionsPage() {
   const [homeTeam, setHomeTeam] = useState("");
   const [awayTeam, setAwayTeam] = useState("");
   const [selectedLeague, setSelectedLeague] = useState("");
+  const [kickoffTime, setKickoffTime] = useState("");
+  const [kickoffDate, setKickoffDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [prediction, setPrediction] = useState("");
 
   const leagueOptions = [
     { name: "Premier League", csvFile: PremierLeagueData },
@@ -33,7 +36,7 @@ function PredictionsPage() {
           const teamsData = results.data;
           const uniqueTeamNames = getUniqueTeamNames(teamsData);
           setTeamNames(uniqueTeamNames);
-        }
+        },
       });
     }
   }, [selectedLeague]);
@@ -64,17 +67,44 @@ function PredictionsPage() {
     setSelectedLeague(selectedLeague);
   }
 
+  function handleKickoffTimeChange(event) {
+    const selectedTime = event.target.value;
+    setKickoffTime(selectedTime);
+  }
+
+  function handleKickoffDateChange(event) {
+    const selectedDate = event.target.value;
+    setKickoffDate(selectedDate);
+  }
+
   const handleConfirmClick = () => {
-    if (homeTeam && awayTeam) {
-      setIsLoading(true); 
-      setTimeout(() => {
-        setIsLoading(false); 
-        const chosenTeams = [homeTeam, awayTeam];
-        console.log(chosenTeams) ///////////// To display the teams chosen /////////////////////
-      }, 2000);
+    if (homeTeam && awayTeam && kickoffTime && kickoffDate) {
+      setIsLoading(true);
+      const data = {
+        "home_team": homeTeam,
+        "away_team": awayTeam,
+        "kickoff_time": kickoffTime,
+        "kickoff_date": kickoffDate,
+      };
+      console.log(JSON.stringify(data));
+      fetch("https://peaceful-chamber-57428-cf0cdd3a447d.herokuapp.com/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setPrediction(data.prediction);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setIsLoading(false);
+        });
     }
   };
-
   return (
     <div className="predictions-container">
       <div id="header" className="predictions-header-container">
@@ -114,7 +144,9 @@ function PredictionsPage() {
                     <Link to="/standings?league=ligue1">Ligue 1</Link>
                   </li>
                   <li>
-                    <Link to="/standings?league=primeiraliga">Primeira Liga</Link>
+                    <Link to="/standings?league=primeiraliga">
+                      Primeira Liga
+                    </Link>
                   </li>
                   <li>
                     <Link to="/standings?league=eredivisie">Eredivisie</Link>
@@ -181,10 +213,30 @@ function PredictionsPage() {
               </select>
             </div>
           </div>
+          <div className="form-group">
+            <label htmlFor="kickoff-time-input">Kickoff Time:</label>
+            <input
+              type="time"
+              className="form-control"
+              id="kickoff-time-input"
+              onChange={handleKickoffTimeChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="kickoff-date-input">Kickoff Date:</label>
+            <input
+              type="date"
+              className="form-control"
+              id="kickoff-date-input"
+              onChange={handleKickoffDateChange}
+            />
+          </div>
           <button onClick={handleConfirmClick}>Confirm Selections</button>
-          {isLoading && (
-            <div className="loading-circle">
-              Processing...    
+          {isLoading && <div className="loading-circle">Processing...</div>}
+          {prediction && (
+            <div className="prediction-result-container">
+              <h3>Prediction:</h3>
+              <p>{prediction}</p>
             </div>
           )}
         </div>
@@ -192,5 +244,4 @@ function PredictionsPage() {
     </div>
   );
 }
-
 export default PredictionsPage;
